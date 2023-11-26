@@ -1,9 +1,9 @@
 <div class="background">
 <div class="container">
     <h1>Image Generator Website</h1>
-    <button (click)="getRandomDog()" [disabled]="loading">Get Random Dog Image</button>
-    <div class="image-container" *ngIf="dogImageUrl || loading">
-        <div *ngIf="loading" class="spinner"></div>
+    <button (click)="getRandomDog()" >Get Random Dog Image</button>
+    <div class="image-container" *ngIf="dogImageUrl ">
+        
         <img *ngIf="dogImageUrl; else noImage" [src]="dogImageUrl"  alt="Image Not Found" />
         <ng-template #noImage>
           <div class="no-image">
@@ -16,11 +16,3 @@
 </div>
 </div>
 
-<!-- <div>
-    <button (click)="getRandomDog()" [disabled]="loading">Get Dog Image</button>
-
-    <div class="image-container" *ngIf="dogImageUrl || loading">
-      <div *ngIf="loading" class="spinner"></div>
-      <img *ngIf="dogImageUrl" [src]="dogImageUrl" alt="Image Not Found" />
-    </div>
-  </div> -->

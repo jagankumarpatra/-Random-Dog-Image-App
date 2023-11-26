@@ -14,10 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AppComponent {
   dogImageUrl:string|undefined;
-  loading=false;
+  
   constructor(private http:HttpClient){}
   getRandomDog(){
-    this.loading=true;
+   
     this.http.get<any>('https://dog.ceo/api/breeds/image/random').subscribe(
       (response)=>{
         if(response && response.message){
@@ -26,11 +26,11 @@ export class AppComponent {
         else{
           console.error('Invalid API response');
         }
-        this.loading = false;
+        
       },
       (error)=>{
         console.error('Error fetching random dog:', error);
-        this.loading = false;
+      
       }
     );
   }
