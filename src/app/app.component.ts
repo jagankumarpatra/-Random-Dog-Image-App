@@ -1,38 +1,37 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-// import { TaskComponent } from './task/task.component';
+
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-
+ 
 })
 export class AppComponent {
-  public name="Vishwas"
-  title = 'Hello World';
-  public myId="testId";
-  public isdisabled=false;
-  public styler="jagan";
-  public hasError=false;
-  public isSpecial=true;
-  public highlightColor="green";
-  public greeting="";
-  onClick(){
-    alert("hi");
-    this.greeting="hi"; 
+  dogImageUrl:string|undefined;
+  loading=false;
+  constructor(private http:HttpClient){}
+  getRandomDog(){
+    this.loading=true;
+    this.http.get<any>('https://dog.ceo/api/breeds/image/random').subscribe(
+      (response)=>{
+        if(response && response.message){
+          this.dogImageUrl=response.message;
+        }
+        else{
+          console.error('Invalid API response');
+        }
+        this.loading = false;
+      },
+      (error)=>{
+        console.error('Error fetching random dog:', error);
+        this.loading = false;
+      }
+    );
   }
-  logmsg(value: string): void {
-  console.log(value);
-  alert(value);
-  }
-  public namee="";
-  displayName=false;
-  public color="rd";
-
-  public colors=["red","blue","green","yellow"];
-
-  public Name="jagaN";
 }

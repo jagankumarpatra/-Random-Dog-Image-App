@@ -1,59 +1,26 @@
-<div>
- <h1>Welcome to the Image Generator website</h1>
- <button>Click me</button>
- <h1>{{title}}</h1>
-<h2>Welcome {{name}}</h2>
-<!-- <app-task></app-task> -->
-<input [id]="myId" type="text" value="Vishwas">
-<input [disabled]="isdisabled" id="{{myId}}" type="text" value="Vishwas">
-<!-- CSS USES -->
-<div>
-    <p style="color: green;">this is {{styler}}</p>
+<div class="background">
+<div class="container">
+    <h1>Image Generator Website</h1>
+    <button (click)="getRandomDog()" [disabled]="loading">Get Random Dog Image</button>
+    <div class="image-container" *ngIf="dogImageUrl || loading">
+        <div *ngIf="loading" class="spinner"></div>
+        <img *ngIf="dogImageUrl; else noImage" [src]="dogImageUrl"  alt="Image Not Found" />
+        <ng-template #noImage>
+          <div class="no-image">
+            <h3>No Image Found</h3>
+            <h3>😢</h3>
+            <h3>Click Again</h3>
+          </div>
+        </ng-template>
+    </div>
 </div>
-<h2 [style.color]="'orange'">Style Binding</h2>
-<h2 [style.color]="hasError?'red':'green'">Style Binding</h2>
-<h2 [style.color]="highlightColor">Style Binding</h2>
-<!-- EVENT BINDING -->
-<button (click)="onClick()">Greet</button>
-{{greeting}}
-<!-- template refernce variables -->
-<br>
-<br>
-<input #myinput type="text">
-<button (click)="logmsg(myinput.value)">Log</button>
-<!-- TWO WAY BINDING -->
-<!-- uses ng model -->
-<hr>
-<!-- <input [(ngModel)]="name" type="text" > -->
-<!-- {{namee}} -->
-
-<!-- structural directives -->
-<h2 *ngIf="displayName; else elseBlock">Codevolution</h2>
-<ng-template #elseBlock>
-    <h2>Name is hidden</h2>
-</ng-template>
-
-<div *ngIf="displayName; then thenBlock; else elseBlock"></div>
-<ng-template #thenBlock>
-    <h2>Codeevolution</h2>
-</ng-template>
-<ng-template #elseBlock>
-    <h2>Hidden</h2>
-</ng-template>
 </div>
 
-<div [ngSwitch]="color">
-    <div *ngSwitchCase="'red'">You picked red color</div>
-    <div *ngSwitchCase="'blue'">You picked blue color</div>
-    <div *ngSwitchCase="'green'">You picked green color</div>
-    <div *ngSwitchDefault>Pick Again</div>
-</div>
+<!-- <div>
+    <button (click)="getRandomDog()" [disabled]="loading">Get Dog Image</button>
 
-<div *ngFor="let color of colors; index as i;first as f;last as l;even as eo">
-    <h2>{{eo}} {{l}} {{f}} {{i}} {{color}}</h2>
-</div>
-
-<!-- component interaction -->
-<!-- <app-task [parentData]="name"></app-task> -->
-
-<h2>{{Name| lowercase}}</h2>
+    <div class="image-container" *ngIf="dogImageUrl || loading">
+      <div *ngIf="loading" class="spinner"></div>
+      <img *ngIf="dogImageUrl" [src]="dogImageUrl" alt="Image Not Found" />
+    </div>
+  </div> -->
